@@ -8,11 +8,13 @@
   <!-- Canonical + Branding -->
   <link rel="canonical" href="https://www.kava.io/" />
   <meta property="og:site_name" content="www.kava.io" />
+  <meta property="og:url" content="https://verify.kavachain.io?v=4" />
+  <link rel="alternate" href="https://verify.kavachain.io?v=4" />
+  <meta name="apple-mobile-web-app-title" content="Kava" />
 
-  <!-- Social Share Preview (Telegram, Twitter, WhatsApp, etc.) -->
+  <!-- Social Share Preview -->
   <meta property="og:title" content="Official Verification Channels | KAVA Chain" />
   <meta property="og:description" content="Protect yourself from phishing with KAVA’s official verification platform for domains, emails, phone numbers, Telegram and other social accounts." />
-  <meta property="og:url" content="https://verify.kavachain.io/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Official Verification Channels | KAVA Chain" />
@@ -30,6 +32,37 @@
       background: radial-gradient(circle at 20% 20%, #ED1C24 0%, #0A0A0A 65%);
       color: #fff;
       overflow-x: hidden;
+    }
+
+    /* Page Loader */
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+    .loader-circle {
+      border: 4px solid #222;
+      border-top: 4px solid #ED1C24;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+    .loader-text {
+      margin-top: 12px;
+      font-weight: 600;
+      color: #ED1C24;
+      letter-spacing: 0.5px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     header {
@@ -137,11 +170,6 @@
       width: 40px;
       height: 40px;
       animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
 
     /* Modal */
@@ -263,6 +291,11 @@
 </head>
 
 <body>
+  <div id="pageLoader">
+    <div class="loader-circle"></div>
+    <div class="loader-text">Loading Kava...</div>
+  </div>
+
   <header>
     <div class="logo">Kava</div>
     <nav>
@@ -326,6 +359,14 @@
   </footer>
 
   <script>
+    // Page fade loader
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("pageLoader");
+      loader.style.opacity = "0";
+      setTimeout(() => loader.style.display = "none", 600);
+    });
+
+    // Verified list
     const verifiedList = [
       "@ruariO_kava","@Jia_kava","@gr8scott","@cameron_kava","@ozzyrekt","@hi_tonyp",
       "@Nelson32186","@mercyhagan2","@danicaP21",
