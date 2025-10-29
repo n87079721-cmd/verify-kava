@@ -21,6 +21,7 @@
       align-items: center;
       padding: 20px 60px;
       background: rgba(0,0,0,0.7);
+      flex-wrap: wrap;
     }
 
     header .logo {
@@ -29,11 +30,18 @@
       color: #ED1C24;
     }
 
+    header nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     header nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 8px 15px;
       font-weight: 500;
+      font-size: 1rem;
     }
 
     .launch-btn {
@@ -44,28 +52,31 @@
       color: white;
       font-weight: 600;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     .hero {
       text-align: center;
-      padding: 120px 20px 60px;
+      padding: 100px 20px 60px;
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       font-weight: 700;
       background: linear-gradient(90deg, #ED1C24, #ff7e00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
+      word-wrap: break-word;
     }
 
     .hero p {
       max-width: 600px;
       margin: 0 auto;
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.6;
       color: #ddd;
+      padding: 0 10px;
     }
 
     .search-box {
@@ -73,10 +84,12 @@
       justify-content: center;
       margin-top: 40px;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .search-box input {
       width: 350px;
+      max-width: 90%;
       padding: 14px 18px;
       border-radius: 6px;
       border: none;
@@ -93,8 +106,27 @@
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
+      width: 140px;
     }
 
+    /* Loading Spinner */
+    .loader {
+      display: none;
+      margin: 30px auto;
+      border: 4px solid #333;
+      border-top: 4px solid #ED1C24;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Modal Styling */
     .modal {
       display: none;
       position: fixed;
@@ -117,14 +149,25 @@
       width: 90%;
       max-width: 420px;
       box-shadow: 0 0 10px rgba(237,28,36,0.5);
+      position: relative;
     }
 
-    .modal-content .icon {
+    .icon {
       font-size: 48px;
       margin-bottom: 10px;
+      transition: transform 0.3s ease-in-out;
     }
 
-    .success { color: #27AE60; }
+    .icon.success {
+      color: #27AE60;
+      animation: pulse 0.4s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     .fail { color: #ED1C24; }
 
     .notice {
@@ -158,7 +201,7 @@
     }
 
     footer .footer-logo {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: #ED1C24;
       margin-bottom: 10px;
@@ -184,19 +227,24 @@
       header {
         flex-direction: column;
         padding: 15px 20px;
+        text-align: center;
       }
       header nav a {
-        margin: 5px 8px;
-        display: inline-block;
+        margin: 8px;
+        font-size: 0.95rem;
+      }
+      .hero {
+        padding: 60px 15px;
       }
       .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
       .search-box {
         flex-direction: column;
         align-items: center;
       }
-      .search-box input, .search-box button {
+      .search-box input,
+      .search-box button {
         width: 90%;
       }
     }
@@ -218,10 +266,13 @@
   <section class="hero">
     <h1>KAVA CHAIN | KAVA Verify</h1>
     <p>Please enter domain or email, phone number or telegram username to check if they are an official KAVA representative. Stay safe from scammers.</p>
+
     <div class="search-box">
       <input id="searchInput" type="text" placeholder="Search @username, email, or link..." />
       <button id="searchBtn">Search</button>
     </div>
+
+    <div class="loader" id="loader"></div>
   </section>
 
   <!-- Verified Modal -->
@@ -254,7 +305,7 @@
 
   <footer>
     <div class="footer-logo">Kava</div>
-    <div>Copyright ©2025, Kava | All Rights Reserved</div>
+    <div>Copyright ©️2025, Kava | All Rights Reserved</div>
     <div class="social-icons">
       <a href="https://github.com/kava-labs" target="_blank"><i class="fab fa-github"></i></a>
       <a href="https://discord.com/invite/q6QuanE4bx" target="_blank"><i class="fab fa-discord"></i></a>
@@ -264,34 +315,19 @@
   </footer>
 
   <script>
-    // Verified list — you can edit this
     const verifiedList = [
-      "@ruariO_kava",
-      "@Jia_kava",
-      "@gr8scott",
-      "@cameron_kava",
-      "@ozzyrekt",
-      "@hi_tonyp",
-      "@Nelson32186",
-      "@mercyhagan2",
-      "@danicaP21",
-      "hello@kava.io",
-      "hello@kavachain.io",
-      "bd@kavachain.io",
-      "kava.io",
-      "www.kava.io",
-      "https://kava.io",
-      "http://kava.io",
-      "kavachain.io",
-      "www.kavachain.io",
-      "https://kavachain.io",
-      "http://kavachain.io"
+      "@ruariO_kava","@Jia_kava","@gr8scott","@cameron_kava","@ozzyrekt","@hi_tonyp",
+      "@Nelson32186","@mercyhagan2","@danicaP21",
+      "hello@kava.io","hello@kavachain.io","bd@kavachain.io",
+      "kava.io","www.kava.io","https://kava.io","http://kava.io",
+      "kavachain.io","www.kavachain.io","https://kavachain.io","http://kavachain.io"
     ];
 
     const searchBtn = document.getElementById("searchBtn");
     const input = document.getElementById("searchInput");
     const verifiedModal = document.getElementById("verifiedModal");
     const unverifiedModal = document.getElementById("unverifiedModal");
+    const loader = document.getElementById("loader");
     const closeBtns = document.querySelectorAll(".close-btn");
 
     searchBtn.addEventListener("click", search);
@@ -305,30 +341,33 @@
 
     function normalize(input) {
       let q = input.toLowerCase().trim();
-
-      // Remove protocols
       q = q.replace(/^https?:\/\//, "").replace(/^www\./, "");
-
-      // Add @ if missing but looks like a username
       if (!q.startsWith("@") && /^[a-z0-9_]+$/i.test(q)) q = "@" + q;
-
       return q;
     }
 
     function search() {
-      const query = input.value;
+      const query = input.value.trim();
       if (!query) return;
 
-      const normalized = normalize(query);
-      const found = verifiedList.map(v => normalize(v)).includes(normalized);
+      loader.style.display = "block";
+      searchBtn.disabled = true;
 
-      if (found) {
-        document.getElementById("verifiedText").textContent = `The "${query}" you searched is officially verified by Kava.`;
-        verifiedModal.style.display = "flex";
-      } else {
-        document.getElementById("unverifiedText").textContent = `The "${query}" you searched is not verified by Kava.`;
-        unverifiedModal.style.display = "flex";
-      }
+      setTimeout(() => {
+        loader.style.display = "none";
+        searchBtn.disabled = false;
+
+        const normalized = normalize(query);
+        const found = verifiedList.map(v => normalize(v)).includes(normalized);
+
+        if (found) {
+          document.getElementById("verifiedText").textContent = `The "${query}" you searched is officially verified by Kava.`;
+          verifiedModal.style.display = "flex";
+        } else {
+          document.getElementById("unverifiedText").textContent = `The "${query}" you searched is not verified by Kava.`;
+          unverifiedModal.style.display = "flex";
+        }
+      }, 1200);
     }
   </script>
 </body>
