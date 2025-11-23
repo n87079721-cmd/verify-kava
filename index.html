@@ -2,87 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Kava Official Verification Portal</title>
 
   <!-- Canonical + Branding -->
   <link rel="canonical" href="https://www.kava.io/" />
-  <meta property="og:site_name" content="Kava" />
+  <meta property="og:site_name" content="www.kava.io" />
   <meta property="og:url" content="https://verify.kavachain.io?v=4" />
   <link rel="alternate" href="https://verify.kavachain.io?v=4" />
   <meta name="apple-mobile-web-app-title" content="Kava" />
 
   <!-- Social Share Preview -->
-  <meta
-    property="og:title"
-    content="Official Verification Channels | Kava Chain"
-  />
-  <meta
-    property="og:description"
-    content="Protect yourself from phishing with Kava official verification platform for domains, emails, phone numbers, Telegram and other social accounts."
-  />
+  <meta property="og:title" content="Official Verification Channels | KAVA Chain" />
+  <meta property="og:description" content="Protect yourself from phishing with KAVA’s official verification platform for domains, emails, phone numbers, Telegram and other social accounts." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta
-    name="twitter:title"
-    content="Official Verification Channels | Kava Chain"
-  />
-  <meta
-    name="twitter:description"
-    content="Protect yourself from phishing with Kava official verification platform for domains, emails, phone numbers, Telegram and other social accounts."
-  />
+  <meta name="twitter:title" content="Official Verification Channels | KAVA Chain" />
+  <meta name="twitter:description" content="Protect yourself from phishing with KAVA’s official verification platform for domains, emails, phone numbers, Telegram and other social accounts." />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg-main: #050505;
-      --bg-section: #0a0a0a;
-      --card-bg: #101010;
-      --border-subtle: #202020;
-      --accent-red: #ed1c24;
-      --accent-orange: #ff7e00;
-      --text-main: #ffffff;
-      --text-muted: #a0a4af;
-      --text-soft: #d5d5d5;
-      --radius-lg: 16px;
-      --radius-md: 10px;
-      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.65);
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Inter", sans-serif;
-      background: radial-gradient(circle at top left, #151515 0, #050505 55%);
-      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      background: #0A0A0A;
+      color: #fff;
       overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Page loader */
+    /* Loader */
     #pageLoader {
       position: fixed;
       inset: 0;
-      background: #000000;
+      background: #0a0a0a;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -90,652 +46,280 @@
       z-index: 9999;
       transition: opacity 0.6s ease;
     }
-
     .loader-circle {
       border: 4px solid #222;
-      border-top: 4px solid var(--accent-red);
+      border-top: 4px solid #ED1C24;
       border-radius: 50%;
       width: 60px;
       height: 60px;
       animation: spin 1s linear infinite;
     }
-
     .loader-text {
       margin-top: 12px;
       font-weight: 600;
-      color: var(--accent-red);
+      color: #ED1C24;
       letter-spacing: 0.5px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
     }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Header similar to kava.io */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(5, 5, 5, 0.96);
-      border-bottom: 1px solid #111111;
-      backdrop-filter: blur(18px);
-    }
-
-    .header-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 14px 0;
-      gap: 20px;
+      align-items: center;
+      padding: 18px 24px;
+      background: #000;
+      border-bottom: 1px solid #1a1a1a;
     }
 
-    .logo-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    header .logo {
+      font-size: 1.6rem;
       font-weight: 700;
-      letter-spacing: 0.6px;
-      font-size: 1.15rem;
+      color: #ED1C24;
+      letter-spacing: 0.5px;
     }
 
-    .logo-mark {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      background: radial-gradient(circle at 30% 0, #ffffff 0, #ff7e00 40%, #ed1c24 75%);
-      box-shadow: 0 0 18px rgba(237, 28, 36, 0.5);
-    }
-
-    .logo-text {
-      text-transform: uppercase;
-    }
-
-    nav {
+    header nav {
       display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 0.9rem;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    nav a {
+    header nav a {
+      color: #fff;
       text-decoration: none;
-      color: var(--text-soft);
       font-weight: 500;
-      padding: 6px 0;
-      border-radius: 999px;
-      padding-inline: 10px;
-      border: 1px solid transparent;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      transition: opacity 0.2s;
     }
 
-    nav a:hover {
-      color: #ffffff;
-      border-color: #252525;
-      background: #111111;
+    header nav a:hover {
+      opacity: 1;
     }
 
     .launch-btn {
-      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+      background: linear-gradient(90deg, #ED1C24, #ff7e00);
       border: none;
       padding: 10px 20px;
-      border-radius: 999px;
+      border-radius: 24px;
       color: white;
       font-weight: 600;
       cursor: pointer;
       font-size: 0.9rem;
-      white-space: nowrap;
-      box-shadow: 0 12px 30px rgba(237, 28, 36, 0.5);
     }
 
-    .launch-btn:hover {
-      filter: brightness(1.08);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 1.25rem;
-      cursor: pointer;
-    }
-
-    /* Hero section styled like kava.io hero */
     .hero {
-      padding: 70px 0 72px;
-      background: radial-gradient(
-          circle at 0 0,
-          rgba(237, 28, 36, 0.22) 0,
-          rgba(237, 28, 36, 0) 45%
-        ),
-        radial-gradient(
-          circle at 100% 0,
-          rgba(255, 126, 0, 0.16) 0,
-          transparent 50%
-        );
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 36px;
-      align-items: center;
-    }
-
-    .hero-kicker {
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-red);
-      font-weight: 600;
-      margin-bottom: 10px;
+      text-align: center;
+      padding: 90px 20px 70px;
+      background: radial-gradient(circle at 20% 20%, #ED1C24 0%, #0A0A0A 70%);
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 3vw, 2.8rem);
-      line-height: 1.1;
-      margin: 0 0 16px;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
     }
 
     .hero h1 span {
-      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #ff7e00;
     }
 
-    .hero-copy {
-      max-width: 520px;
-      font-size: 0.98rem;
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
       line-height: 1.7;
-      color: var(--text-soft);
-      margin-bottom: 24px;
-    }
-
-    .hero-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      opacity: 0.9;
+      color: #d5d5d5;
     }
 
     .search-box {
-      margin-top: 26px;
       display: flex;
-      align-items: stretch;
+      justify-content: center;
+      margin-top: 40px;
       gap: 10px;
       flex-wrap: wrap;
     }
 
     .search-box input {
-      flex: 1;
-      min-width: 220px;
-      padding: 15px 16px;
-      border-radius: 999px;
-      border: 1px solid #242424;
-      background: #050505;
-      color: #ffffff;
-      font-size: 0.95rem;
+      width: 380px;
+      max-width: 90%;
+      padding: 16px 18px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+      font-size: 1rem;
       outline: none;
     }
 
-    .search-box input::placeholder {
-      color: #555b66;
-    }
-
     .search-box button {
-      background: #ffffff;
-      color: #000000;
+      background: #ED1C24;
+      color: white;
       border: none;
-      padding: 14px 22px;
-      border-radius: 999px;
+      padding: 16px 28px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
-      font-size: 0.94rem;
-      min-width: 120px;
+      font-size: 1rem;
     }
 
     .search-box button:hover {
-      filter: brightness(1.04);
+      background: #ff2f2f;
     }
 
+    /* Loader below search */
     .loader {
       display: none;
-      margin: 24px 0 0;
-      border: 4px solid #252525;
-      border-top: 4px solid var(--accent-red);
+      margin: 40px auto;
+      border: 4px solid #333;
+      border-top: 4px solid #ED1C24;
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       animation: spin 0.8s linear infinite;
     }
 
-    .hero-card {
-      background: radial-gradient(circle at top, #191919 0, #101010 55%);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 22px 22px 20px;
-      box-shadow: var(--shadow-soft);
-      font-size: 0.86rem;
-    }
-
-    .hero-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .hero-card-title {
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .hero-chip {
-      font-size: 0.72rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(25, 186, 101, 0.12);
-      border: 1px solid rgba(25, 186, 101, 0.4);
-      color: #3dd480;
-      font-weight: 500;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 18px;
-      color: var(--text-soft);
-    }
-
-    .hero-card li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .hero-card li i {
-      margin-top: 2px;
-      color: #3dd480;
-      font-size: 0.78rem;
-    }
-
-    .hero-card-footer {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      border-top: 1px solid #232323;
-      padding-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-card-footer i {
-      font-size: 0.7rem;
-      color: var(--accent-red);
-    }
-
-    /* Modals */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.88);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
       justify-content: center;
       align-items: center;
       z-index: 100;
-      padding: 16px;
     }
 
     .modal-content {
-      background: #101010;
+      background: #111;
       color: white;
-      padding: 28px 26px 24px;
-      border-radius: var(--radius-md);
-      text-align: left;
-      width: 100%;
+      padding: 35px 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
       max-width: 420px;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8);
-      border: 1px solid #262626;
-    }
-
-    .modal-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
+      box-shadow: 0 0 10px rgba(237,28,36,0.5);
     }
 
     .icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
+      font-size: 48px;
+      margin-bottom: 10px;
     }
 
-    .success {
-      background: rgba(46, 204, 113, 0.12);
-      color: #2ecc71;
-      animation: pulse 0.3s ease-out;
-    }
-
-    .fail {
-      background: rgba(237, 28, 36, 0.14);
-      color: var(--accent-red);
-    }
+    .success { color: #27AE60; animation: pulse 0.4s ease-in-out; }
+    .fail { color: #ED1C24; }
 
     @keyframes pulse {
-      0% {
-        transform: scale(0.8);
-        opacity: 0.6;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .modal h2 {
-      font-size: 1.1rem;
-      margin: 0;
-    }
-
-    .modal p {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: var(--text-soft);
+      0% { transform: scale(0.8); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .notice {
-      background: #121212;
-      border-radius: 10px;
-      border: 1px solid #262626;
-      padding: 10px 12px;
-      margin-top: 16px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .notice strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #ffffff;
-      font-size: 0.82rem;
+      background: #1a1a1a;
+      border-left: 3px solid #ED1C24;
+      padding: 10px 15px;
+      margin-top: 15px;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #ccc;
     }
 
     .close-btn {
-      margin-top: 18px;
-      background: #ffffff;
-      color: #000000;
+      margin-top: 20px;
+      background: #ED1C24;
+      color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 999px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
-      font-size: 0.86rem;
+      font-size: 0.95rem;
     }
 
-    .close-btn:hover {
-      filter: brightness(1.04);
-    }
-
-    /* Footer similar to kava.io */
     footer {
-      background: var(--bg-main);
-      border-top: 1px solid #111111;
-      padding: 32px 0 40px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      background: #000;
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 0.9rem;
+      color: #a0a4af;
     }
 
-    .footer-top {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 20px;
-      align-items: flex-start;
-    }
-
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    footer .footer-logo {
+      font-size: 2rem;
       font-weight: 700;
-      font-size: 1.1rem;
+      color: #ED1C24;
+      margin-bottom: 10px;
     }
 
-    .footer-logo .logo-mark {
-      width: 22px;
-      height: 22px;
-      border-radius: 7px;
+    footer .social-icons {
+      margin-top: 15px;
     }
 
-    .footer-columns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 26px;
-      font-size: 0.8rem;
-    }
-
-    .footer-col-title {
-      font-weight: 600;
-      color: #ffffff;
-      margin-bottom: 6px;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .footer-link {
-      display: block;
-      color: var(--text-muted);
+    footer .social-icons a {
+      color: #a0a4af;
+      font-size: 1.3rem;
+      margin: 0 10px;
       text-decoration: none;
-      margin-bottom: 4px;
+      transition: color 0.2s;
     }
 
-    .footer-link:hover {
-      color: #ffffff;
+    footer .social-icons a:hover {
+      color: #ED1C24;
     }
 
-    .social-icons {
-      margin-top: 8px;
-    }
-
-    .social-icons a {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-right: 10px;
-      text-decoration: none;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent-red);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #111111;
-      padding-top: 16px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-    }
-
-    @media (max-width: 800px) {
-      nav {
-        display: none;
-      }
-      .hamburger {
-        display: block;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .header-inner {
-        padding: 10px 0;
-      }
-      .hero {
-        padding: 46px 0 50px;
-      }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      header { flex-direction: column; gap: 8px; }
+      .search-box { flex-direction: column; align-items: center; }
+      .search-box input, .search-box button { width: 90%; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Page Loader -->
   <div id="pageLoader">
     <div class="loader-circle"></div>
-    <div class="loader-text">Loading Kava</div>
+    <div class="loader-text">Loading Kava...</div>
   </div>
 
-  <!-- Header -->
   <header>
-    <div class="container">
-      <div class="header-inner">
-        <div class="logo-row">
-          <div class="logo-mark"></div>
-          <div class="logo-text">Kava</div>
-        </div>
-
-        <nav>
-          <a href="https://www.kava.io/ecosystem" target="_blank">Ecosystem</a>
-          <a href="https://app.kava.io/get-kava" target="_blank">Bridge</a>
-          <a href="https://www.kava.io/developers#resources" target="_blank">Developers</a>
-          <a href="https://www.kava.io/news" target="_blank">About</a>
-        </nav>
-
-        <div class="header-right">
-          <button
-            class="launch-btn"
-            onclick="window.open('https://app.kava.io/home','_blank')"
-          >
-            Launch App
-          </button>
-          <div class="hamburger">
-            <i class="fas fa-bars"></i>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="logo">Kava</div>
+    <nav>
+      <a href="https://www.kava.io/ecosystem" target="_blank">Ecosystem</a>
+      <a href="https://app.kava.io/get-kava" target="_blank">Bridge</a>
+      <a href="https://www.kava.io/developers#resources" target="_blank">Developers</a>
+      <a href="https://www.kava.io/news" target="_blank">About</a>
+    </nav>
+    <button class="launch-btn" onclick="window.open('https://app.kava.io/home','_blank')">Launch App</button>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-inner">
-        <div>
-          <div class="hero-kicker">Kava Chain</div>
-          <h1>
-            Verify <span>official</span> Kava
-            representatives
-          </h1>
-          <p class="hero-copy">
-            Check domains, emails, Telegram usernames and other contact details
-            to confirm if you are speaking with an official Kava representative.
-            Use this page before sharing any personal or wallet information.
-          </p>
+    <h1>KAVA CHAIN <span>|</span> KAVA Verify</h1>
+    <p>Please enter domain or email, phone number or telegram username to check if they are an official KAVA representative. Stay safe from scammers.</p>
 
-          <div class="search-box">
-            <input
-              id="searchInput"
-              type="text"
-              placeholder="Search @username, email, or link"
-            />
-            <button id="searchBtn">Search</button>
-          </div>
-
-          <div class="loader" id="loader"></div>
-
-          <div class="hero-note">
-            Tip Try checking the Telegram handle, email address or domain the
-            person is using.
-          </div>
-        </div>
-
-        <aside class="hero-card">
-          <div class="hero-card-header">
-            <div class="hero-card-title">
-              Kava official verification portal
-            </div>
-            <div class="hero-chip">
-              <i class="fa-regular fa-shield-halved" style="margin-right:4px;"></i>
-              Live
-            </div>
-          </div>
-
-          <ul>
-            <li>
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Search official domains, emails, Telegram usernames and more.</span>
-            </li>
-            <li>
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Results are validated against a list maintained by the Kava core team.</span>
-            </li>
-            <li>
-              <i class="fa-solid fa-circle-check"></i>
-              <span>Kava will never ask for private keys, seed phrases or direct
-              payments in chats.</span>
-            </li>
-          </ul>
-
-          <div class="hero-card-footer">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span>
-              If a contact is not listed as verified, assume it is untrusted
-              and confirm through official Kava channels.
-            </span>
-          </div>
-        </aside>
-      </div>
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="Search @username, email, or link..." />
+      <button id="searchBtn">Search</button>
     </div>
+
+    <div class="loader" id="loader"></div>
   </section>
 
   <!-- Verified Modal -->
   <div id="verifiedModal" class="modal">
     <div class="modal-content">
-      <div class="modal-heading">
-        <div class="icon success">
-          <i class="fa-solid fa-check"></i>
-        </div>
-        <h2>Verified contact</h2>
-      </div>
+      <div class="icon success">✔</div>
+      <h2>Verified</h2>
       <p id="verifiedText"></p>
       <div class="notice">
-        <strong>Official Kava notice</strong>
-        <p>
-          Kava representatives do not request private keys, seed phrases or
-          one time passwords. Always confirm through kavachain.io or kava.io.
-        </p>
+        <strong>Official Notice</strong>
+        <p>Kava representatives will never request payments or private keys. Always verify on kavachain.io.</p>
       </div>
       <button class="close-btn">Got it</button>
     </div>
@@ -744,163 +328,41 @@
   <!-- Unverified Modal -->
   <div id="unverifiedModal" class="modal">
     <div class="modal-content">
-      <div class="modal-heading">
-        <div class="icon fail">
-          <i class="fa-solid fa-xmark"></i>
-        </div>
-        <h2>Not verified by Kava</h2>
-      </div>
+      <div class="icon fail">✖</div>
+      <h2>Unverified</h2>
       <p id="unverifiedText"></p>
       <div class="notice">
-        <strong>Official Kava notice</strong>
-        <p>
-          This contact is not confirmed as part of the Kava team. Do not send
-          funds or share sensitive information unless you have validated
-          through official channels.
-        </p>
+        <strong>Official Notice</strong>
+        <p>This source is not confirmed as part of Kava. Avoid sharing personal or wallet information.</p>
       </div>
       <button class="close-btn">Got it</button>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <div class="logo-mark"></div>
-            <span>Kava</span>
-          </div>
-          <div>
-            Verify any supposed Kava account before you trust it with
-            information or assets.
-          </div>
-          <div class="social-icons">
-            <a href="https://github.com/kava-labs" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="https://discord.com/invite/q6QuanE4bx" target="_blank"
-              ><i class="fab fa-discord"></i
-            ></a>
-            <a href="https://twitter.com/KAVA_CHAIN" target="_blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://www.reddit.com/r/kava_platform" target="_blank"
-              ><i class="fab fa-reddit"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="footer-columns">
-          <div>
-            <div class="footer-col-title">Developers</div>
-            <a
-              class="footer-link"
-              href="https://www.kava.io/developers#resources"
-              target="_blank"
-              >Resources</a
-            >
-            <a
-              class="footer-link"
-              href="https://docs.kava.io"
-              target="_blank"
-              >Docs</a
-            >
-            <a
-              class="footer-link"
-              href="https://github.com/kava-labs"
-              target="_blank"
-              >GitHub</a
-            >
-          </div>
-          <div>
-            <div class="footer-col-title">Community</div>
-            <a
-              class="footer-link"
-              href="https://twitter.com/KAVA_CHAIN"
-              target="_blank"
-              >Twitter</a
-            >
-            <a
-              class="footer-link"
-              href="https://discord.com/invite/q6QuanE4bx"
-              target="_blank"
-              >Discord</a
-            >
-            <a
-              class="footer-link"
-              href="https://www.kava.io/news"
-              target="_blank"
-              >News</a
-            >
-          </div>
-          <div>
-            <div class="footer-col-title">Other</div>
-            <a
-              class="footer-link"
-              href="https://app.kava.io/home"
-              target="_blank"
-              >Launch App</a
-            >
-            <a
-              class="footer-link"
-              href="https://www.kava.io/roadmap"
-              target="_blank"
-              >Roadmap</a
-            >
-            <a
-              class="footer-link"
-              href="https://www.kava.io/branding"
-              target="_blank"
-              >Branding</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        Copyright ©️ Kava All Rights Reserved
-      </div>
+    <div class="footer-logo">Kava</div>
+    <div>Copyright ©️2025, Kava | All Rights Reserved</div>
+    <div class="social-icons">
+      <a href="https://github.com/kava-labs" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://discord.com/invite/q6QuanE4bx" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://twitter.com/KAVA_CHAIN" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.reddit.com/r/kava_platform" target="_blank"><i class="fab fa-reddit"></i></a>
     </div>
   </footer>
 
   <script>
     window.addEventListener("load", () => {
-      const pageLoader = document.getElementById("pageLoader");
-      pageLoader.style.opacity = "0";
-      setTimeout(() => (pageLoader.style.display = "none"), 600);
+      const loader = document.getElementById("pageLoader");
+      loader.style.opacity = "0";
+      setTimeout(() => loader.style.display = "none", 600);
     });
 
     const verifiedList = [
-      "@rhuairahairidh",
-      "@nickdeluca",
-      "@Cameron_Kava",
-      "@gr8scott",
-      "@notALEXsmith",
-      "@raghu0x",
-      "@monkemike",
-      "@hi_tonyp",
-      "@ozzyrekt",
-      "@ruariO_kava",
-      "@Jia_kava",
-      "@Nelson32186",
-      "@mercyhagan2",
-      "@emilyt20",
-      "@DesJscott",
-      "@Web3MacLeod",
-      "@danicaP21",
-      "hello@kava.io",
-      "hello@kavachain.io",
-      "bd@kavachain.io",
-      "kava.io",
-      "www.kava.io",
-      "https://kava.io",
-      "http://kava.io",
-      "kavachain.io",
-      "www.kavachain.io",
-      "https://kavachain.io",
-      "http://kavachain.io"
+      "@ruariO_kava","@Jia_kava","@gr8scott","@cameron_kava","@ozzyrekt","@hi_tonyp",
+      "@Nelson32186","@mercyhagan2","@emilyt20","@DesJscott","@Web3MacLeod","@danicaP21",
+      "hello@kava.io","hello@kavachain.io","bd@kavachain.io",
+      "kava.io","www.kava.io","https://kava.io","http://kava.io",
+      "kavachain.io","www.kavachain.io","https://kavachain.io","http://kavachain.io"
     ];
 
     const searchBtn = document.getElementById("searchBtn");
@@ -911,10 +373,7 @@
     const closeBtns = document.querySelectorAll(".close-btn");
 
     searchBtn.addEventListener("click", search);
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter") search();
-    });
-
+    input.addEventListener("keydown", e => { if (e.key === "Enter") search(); });
     closeBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         verifiedModal.style.display = "none";
@@ -922,8 +381,8 @@
       });
     });
 
-    function normalize(inputValue) {
-      let q = inputValue.toLowerCase().trim();
+    function normalize(input) {
+      let q = input.toLowerCase().trim();
       q = q.replace(/^https?:\/\//, "").replace(/^www\./, "");
       if (!q.startsWith("@") && /^[a-z0-9_]+$/i.test(q)) q = "@" + q;
       return q;
@@ -944,12 +403,10 @@
         const found = verifiedList.map(v => normalize(v)).includes(normalized);
 
         if (found) {
-          document.getElementById("verifiedText").textContent =
-            `The "${query}" you searched is officially verified by Kava.`;
+          document.getElementById("verifiedText").textContent = `The "${query}" you searched is officially verified by Kava.`;
           verifiedModal.style.display = "flex";
         } else {
-          document.getElementById("unverifiedText").textContent =
-            `The "${query}" you searched is not verified by Kava.`;
+          document.getElementById("unverifiedText").textContent = `The "${query}" you searched is not verified by Kava.`;
           unverifiedModal.style.display = "flex";
         }
       }, 1200);
@@ -957,3 +414,6 @@
   </script>
 </body>
 </html>
+
+
+
