@@ -210,6 +210,131 @@
       cursor: pointer;
     }
 
+    .hamburger i {
+      display: block;
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 60;
+      display: none;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu-inner {
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      margin-left: auto;
+      background: #181b22;
+      padding: 18px 22px 30px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .mobile-menu-header .logo-row {
+      font-size: 1.05rem;
+    }
+
+    .mobile-launch {
+      padding-inline: 16px;
+      font-size: 0.85rem;
+    }
+
+    .mobile-close {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 1.35rem;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 4px;
+    }
+
+    .mobile-nav-sections {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .mobile-section {
+      border-bottom: 1px solid #232732;
+      padding: 12px 0;
+    }
+
+    .mobile-section-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .mobile-section-toggle i {
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    .mobile-section.open .mobile-section-toggle i {
+      transform: rotate(180deg);
+    }
+
+    .mobile-submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .mobile-section.open .mobile-submenu {
+      max-height: 220px;
+      margin-top: 10px;
+    }
+
+    .mobile-submenu a,
+    .mobile-link-single {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      padding: 4px 0;
+    }
+
+    .mobile-submenu a:hover,
+    .mobile-link-single:hover {
+      color: #ffffff;
+    }
+
+    .mobile-link-single {
+      display: block;
+      padding: 12px 0;
+      border-bottom: 1px solid #232732;
+      font-weight: 500;
+    }
+
     /* Hero section styled like kava.io hero */
     .hero {
       padding: 70px 0 72px;
@@ -640,13 +765,81 @@
           >
             Launch App
           </button>
-          <div class="hamburger">
+          <div class="hamburger" id="hamburgerBtn">
             <i class="fas fa-bars"></i>
           </div>
         </div>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-header">
+        <div class="logo-row">
+          <div class="logo-mark"></div>
+          <div class="logo-text">Kava</div>
+        </div>
+        <button
+          class="launch-btn mobile-launch"
+          onclick="window.open('https://app.kava.io/home','_blank')"
+        >
+          Launch App
+        </button>
+        <button class="mobile-close" id="mobileCloseBtn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="mobile-nav-sections">
+        <div class="mobile-section">
+          <button class="mobile-section-toggle">
+            <span>Ecosystem</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="mobile-submenu">
+            <a href="https://www.kava.io/ecosystem" target="_blank">DApps</a>
+            <a href="https://www.kava.io/grants" target="_blank">Grants</a>
+          </div>
+        </div>
+
+        <a
+          class="mobile-link-single"
+          href="https://app.kava.io/get-kava"
+          target="_blank"
+        >
+          Bridge
+        </a>
+
+        <div class="mobile-section">
+          <button class="mobile-section-toggle">
+            <span>Developers</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="mobile-submenu">
+            <a href="https://docs.kava.io" target="_blank">Docs</a>
+            <a href="https://www.kava.io/developers#resources" target="_blank">Resources</a>
+            <a href="https://www.kava.io/ecosystem/mintscan" target="_blank">Block Explorer</a>
+            <a href="https://github.com/kava-labs" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <div class="mobile-section">
+          <button class="mobile-section-toggle">
+            <span>About</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="mobile-submenu">
+            <a href="https://www.kava.io/roadmap" target="_blank">Roadmap</a>
+            <a href="https://www.kava.io/news" target="_blank">Blog</a>
+            <a href="https://www.kava.io/community" target="_blank">Community</a>
+            <a href="https://www.kava.io/vacancy-tag/front-end-developer" target="_blank">Careers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -872,6 +1065,45 @@
       setTimeout(() => (pageLoader.style.display = "none"), 600);
     });
 
+    /* Mobile menu logic */
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileCloseBtn = document.getElementById("mobileCloseBtn");
+
+    if (hamburgerBtn && mobileMenu && mobileCloseBtn) {
+      const closeMobileMenu = () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      };
+
+      hamburgerBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+
+      mobileCloseBtn.addEventListener("click", closeMobileMenu);
+
+      mobileMenu.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+          closeMobileMenu();
+        }
+      });
+
+      document.querySelectorAll(".mobile-section-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const section = btn.closest(".mobile-section");
+          section.classList.toggle("open");
+        });
+      });
+
+      document
+        .querySelectorAll(".mobile-submenu a, .mobile-link-single")
+        .forEach((link) => {
+          link.addEventListener("click", closeMobileMenu);
+        });
+    }
+
+    /* Verification logic */
     const verifiedList = [
       "@rhuairahairidh",
       "@nickdeluca",
@@ -911,11 +1143,11 @@
     const closeBtns = document.querySelectorAll(".close-btn");
 
     searchBtn.addEventListener("click", search);
-    input.addEventListener("keydown", e => {
+    input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") search();
     });
 
-    closeBtns.forEach(btn => {
+    closeBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         verifiedModal.style.display = "none";
         unverifiedModal.style.display = "none";
@@ -941,7 +1173,7 @@
         searchBtn.disabled = false;
 
         const normalized = normalize(query);
-        const found = verifiedList.map(v => normalize(v)).includes(normalized);
+        const found = verifiedList.map((v) => normalize(v)).includes(normalized);
 
         if (found) {
           document.getElementById("verifiedText").textContent =
